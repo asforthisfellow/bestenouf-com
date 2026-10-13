@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bestenouf.com/sitemap.xml

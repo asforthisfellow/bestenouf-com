@@ -1,0 +1,81 @@
+{
+  "currency": "USD",
+  "revision": "2026-10-07",
+  "items": [
+    {
+      "id": "men-of-the-bible",
+      "name": "Men of the Bible",
+      "priceCents": 9900
+    },
+    {
+      "id": "hired",
+      "name": "Hired",
+      "priceCents": 2700
+    },
+    {
+      "id": "women-of-the-bible",
+      "name": "Women of the Bible",
+      "priceCents": 8900
+    },
+    {
+      "id": "american-presidents",
+      "name": "American Presidents",
+      "priceCents": 5500
+    },
+    {
+      "id": "financial-faith-confessions",
+      "name": "Financial Faith Confessions",
+      "priceCents": 2200
+    },
+    {
+      "id": "chronological-record-supreme-pontiffs",
+      "name": "Chronological Record of the Supreme Pontiffs",
+      "priceCents": 6500
+    },
+    {
+      "id": "american-first-ladies",
+      "name": "American First Ladies",
+      "priceCents": 4500
+    },
+    {
+      "id": "focus-that-finishes",
+      "name": "Focus That Finishes",
+      "priceCents": 1500
+    },
+    {
+      "id": "the-steady-body",
+      "name": "The Steady Body",
+      "priceCents": 1500
+    },
+    {
+      "id": "the-debt-free-paycheck",
+      "name": "The Debt-Free Paycheck",
+      "priceCents": 1900
+    },
+    {
+      "id": "tax-clarity",
+      "name": "Tax Clarity",
+      "priceCents": 2700
+    },
+    {
+      "id": "first-1000-online",
+      "name": "First $1,000 Online",
+      "priceCents": 1900
+    },
+    {
+      "id": "the-discipline-code",
+      "name": "The Discipline Code",
+      "priceCents": 1500
+    },
+    {
+      "id": "calm-under-pressure",
+      "name": "Calm Under Pressure",
+      "priceCents": 1900
+    },
+    {
+      "id": "study-abroad-playbook",
+      "name": "Study Abroad Playbook",
+      "priceCents": 2200
+    }
+  ]
+}

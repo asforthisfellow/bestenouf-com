@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="favicon.svg?v=5" type="image/svg+xml"><link rel="shortcut icon" href="favicon.ico?v=5"><link rel="icon" href="favicon-32x32.png?v=5" sizes="32x32" type="image/png"><link rel="icon" href="favicon-16x16.png?v=5" sizes="16x16" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=5" sizes="180x180">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Bestenouf order confirmation and secure book downloads.">
+<title>Order Confirmed — Bestenouf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/inner.css">
+<style>
+.order-shell{max-width:800px;margin:0 auto;padding:clamp(4rem,10vw,8rem) 1.5rem}
+.order-kicker{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#990000;margin-bottom:1rem}
+.order-title{font-family:'DM Sans',system-ui,sans-serif;font-size:clamp(2.8rem,7vw,6.5rem);font-weight:900;line-height:.88;letter-spacing:-.06em;text-transform:uppercase;margin:0 0 1.5rem}
+.order-status{font-size:1rem;line-height:1.7;color:#545454;max-width:660px}
+.order-status.is-confirmed{color:#1c2328}.order-status.is-error{color:#990000}
+.order-summary{font-size:.76rem;color:#737373;margin-top:.8rem}
+.downloads{display:grid;gap:.85rem;margin-top:2rem}
+.download-card{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.2rem;border:1px solid #c5c5c0;background:#e6efda;color:#1c2328;text-decoration:none;transition:.25s ease}
+.download-card:hover{border-color:#990000;transform:translateY(-2px)}
+.download-card span{font-family:'Instrument Serif',Georgia,serif;font-size:1.15rem;font-style:italic}.download-card strong{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:#990000}
+.order-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.25rem}.order-actions a{display:inline-flex;padding:.85rem 1.15rem;border:1px solid #c5c5c0;text-decoration:none;color:#1c2328;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}.order-actions a:hover{border-color:#990000;color:#990000}
+</style>
+<link rel="stylesheet" href="assets/css/cursor.css"></head>
+<body><a class="skip-link" href="#main">Skip to main content</a>
+<header class="top"><div class="wrap topin"><a class="brand" href="index.html">Bestenouf</a><nav class="nav" aria-label="Main"><a href="books.html">Books</a><a href="blog/index.html">Blog</a><a href="mailto:bestenouf@consultant.com">Contact</a></nav></div></header>
+<main id="main" class="order-shell">
+<p class="order-kicker">Order Confirmation</p>
+<h1 class="order-title">Thank you.</h1>
+<p class="order-status" id="orderStatus" aria-live="polite">Confirming your Stripe payment…</p>
+<p class="order-summary" id="orderSummary"></p>
+<div class="downloads" id="orderDownloads"></div>
+<div class="order-actions"><a href="books.html">Return to Books</a><a href="mailto:bestenouf@consultant.com">Need Help?</a></div>
+</main>
+<footer class="footer"><div class="wrap footerin"><span>© 2026 Bestenouf. All rights reserved.</span><span><a href="sitemap.html">Sitemap</a> · <a href="privacy.html">Privacy</a></span></div></footer>
+<script src="assets/js/store-config.js"></script>
+<script src="assets/js/order-success.js"></script>
+<script src="assets/js/cursor.js" defer></script></body>
+</html>

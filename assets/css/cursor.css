@@ -1,0 +1,26 @@
+/* Shared crown-and-cross cursor. Fine-pointer devices only. */
+@media (hover:hover) and (pointer:fine){
+  html.has-faith-cursor body{cursor:none}
+  html.has-faith-cursor a,
+  html.has-faith-cursor button,
+  html.has-faith-cursor input,
+  html.has-faith-cursor select,
+  html.has-faith-cursor textarea,
+  html.has-faith-cursor summary,
+  html.has-faith-cursor label,
+  html.has-faith-cursor [role="button"]{cursor:pointer}
+  .faith-cursor-crown,.faith-cursor-cross{position:fixed;top:0;left:0;pointer-events:none;opacity:0;transform:translate(-50%,-50%);transition:opacity .12s ease;will-change:left,top;visibility:hidden}
+  .faith-cursor-crown{width:16px;height:16px;color:#aa1313;z-index:2147483645}
+  .faith-cursor-crown svg{display:block;width:100%;height:100%;overflow:visible}
+  .faith-cursor-crown__ring{fill:none;stroke:currentColor;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+  .faith-cursor-crown__thorns{fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+  .faith-cursor-cross{width:12px;height:16px;z-index:2147483646;filter:drop-shadow(0 0 1px rgba(28,35,40,.95))}
+  .faith-cursor-cross::before,.faith-cursor-cross::after{content:"";position:absolute;background:#fff;border-radius:1px}
+  .faith-cursor-cross::before{left:5px;top:0;width:2px;height:16px}
+  .faith-cursor-cross::after{left:1px;top:5px;width:10px;height:2px}
+  .faith-cursor-crown.is-ready,.faith-cursor-cross.is-ready{opacity:1;visibility:visible}
+  .faith-cursor-crown.is-hidden,.faith-cursor-cross.is-hidden{opacity:0}
+}
+@media (hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){
+  .faith-cursor-crown,.faith-cursor-cross{display:none!important}
+}
