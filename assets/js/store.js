@@ -81,7 +81,7 @@
 
   function escapeHtml(value) {
     return String(value).replace(/[&<>'"]/g, function (char) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char];
+      return { '&': '&', '<': '<', '>': '>', "'": '&#39;', '"': '"' }[char];
     });
   }
 
@@ -156,10 +156,20 @@
       setStatus('', false);
 
       try {
-        var response = await fetch(apiBase + '/checkout', {
+        // Map catalog IDs to Stripe price IDs (update when real price IDs are ready)
+        var priceIds = cart.map(function (id) {
+          // Temporary mapping — replace with real Stripe price IDs from products.js
+          return 'price_REPLACE_' + id.toUpperCase().replace(/-/g, '_');
+        });
+
+        var response = await fetch(apiBase + '/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: cart.map(function (id) { return { id: id, quantity: 1 }; }) })
+          body: JSON.stringify({
+            priceIds: priceIds,
+            successUrl: 'https://bestenouf.com/order-success.html',
+            cancelUrl: window.location.href
+          })
         });
         var data = await response.json().catch(function () { return {}; });
         if (!response.ok || !data.url) throw new Error(data.error || 'Unable to start checkout');
