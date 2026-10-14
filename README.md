@@ -17,15 +17,17 @@ Extract the ZIP first, then open `index.html`. The navigation uses real page lin
 
 ## Payments before launch
 
-The catalog now contains 15 priced books. Checkout is intentionally inactive because the original package has a separate server-side catalog. Do not enable checkout until the payment service is updated.
+The catalog contains 15 priced books. The Railway API address is configured, but checkout remains intentionally disabled until the backend passes the production-readiness checks below.
 
-- `checkout-catalog.json` contains all 15 trusted item IDs with approved prices in cents. Update the EXISTING checkout backend to match it. The older eight IDs are retained for compatibility.
-- Connect the six new paid PDFs to that backend's protected download records.
-- Test the server's checkout totals, Stripe test-mode completion, order confirmation, and the protected downloads.
-- Then change `checkoutEnabled: false` to `true` in `assets/js/store-config.js` and republish that file.
+- Treat `checkout-catalog.json` as display data only. The backend must keep its own trusted product allowlist and calculate every price server-side from catalog IDs.
+- Restrict CORS to `https://bestenouf.com` and the exact `www` origin if it remains in use. Never reflect arbitrary origins.
+- Implement the frontend contract: `POST /checkout` accepts catalog IDs and quantities; `GET /order?session_id=...` returns only a verified paid order and short-lived download URLs.
+- Verify Stripe webhook signatures, enforce idempotency, rate-limit public endpoints, and keep all payment secrets and paid-file locations in Railway variables or another private secret store.
+- Test checkout, cancellation, webhook retries, order confirmation, email delivery, and protected downloads in Stripe test mode before enabling live mode.
+- Only after those tests pass, change `checkoutEnabled: false` to `true` in `assets/js/store-config.js`.
 
-The existing API address is retained as configuration. No API availability, email delivery, or payment transaction has been verified by this merge. No Stripe secret keys or paid PDFs are included.
+No Stripe or PayPal secret belongs in this public repository. GitHub Pages also ignores the response headers declared in `firebase.json`; those headers only apply if the site is deployed with Firebase Hosting.
 
 ## Validation
 
-All local page, image, script, stylesheet, and fragment links were checked. Catalog order, 15 approved prices, 15 cover poses, the Original Eight bundle calculation, biography wording, skip links, heading structure, and sitemap coverage were checked. Cart behavior was checked with a local JavaScript harness. Browser/device rendering and live checkout still require verification.
+All local page, image, script, stylesheet, and fragment links were checked. Catalog order, 15 approved prices, 15 cover poses, the Original Eight bundle calculation, biography wording, skip links, heading structure, and sitemap coverage were checked. Cart behavior was checked with a local JavaScript harness. The repository workflow runs `node scripts/verify-site.mjs` on every push and pull request. Browser/device rendering and live checkout still require verification.

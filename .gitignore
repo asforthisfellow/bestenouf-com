@@ -1,0 +1,21 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Private backend and paid digital products
+backend/
+private/
+downloads/
+*.pdf
+*.zip
+
+# Tooling and operating-system files
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
