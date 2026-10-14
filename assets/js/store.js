@@ -3,6 +3,7 @@
 
   var catalog = window.BESTENOUF_CATALOG || {};
   var checkoutEnabled = !!(window.BESTENOUF_STORE && window.BESTENOUF_STORE.checkoutEnabled);
+  var paypalEnabled = !!(window.BESTENOUF_STORE && window.BESTENOUF_STORE.paypalEnabled);
   var assetRoot = document.body.dataset.assetRoot || '';
 
   var storageKey = 'bestenoufBookCartV1';
@@ -14,10 +15,24 @@
   var totalEl = document.getElementById('bookCartTotal');
   var countEls = document.querySelectorAll('[data-cart-count]');
   var checkoutBtn = document.getElementById('bookCartCheckout');
+  var paypalBtn = null;
   var closeBtn = document.getElementById('bookCartClose');
   var openBtns = document.querySelectorAll('[data-cart-open]');
   var statusEl = document.getElementById('bookCartStatus');
   var cartReturnFocus = null;
+  var originalEightIds = ['hired', 'tax-clarity', 'the-debt-free-paycheck', 'first-1000-online', 'calm-under-pressure', 'focus-that-finishes', 'the-steady-body', 'the-discipline-code'];
+
+  if (checkoutBtn) {
+    checkoutBtn.textContent = checkoutEnabled ? 'Pay securely by card' : 'Checkout temporarily unavailable';
+    if (paypalEnabled) {
+      paypalBtn = document.createElement('button');
+      paypalBtn.type = 'button';
+      paypalBtn.id = 'bookCartPayPal';
+      paypalBtn.className = 'btn book-cart__checkout book-cart__paypal';
+      paypalBtn.textContent = 'Pay securely with PayPal';
+      checkoutBtn.insertAdjacentElement('afterend', paypalBtn);
+    }
+  }
 
   if (drawer) {
     drawer.setAttribute('role', 'dialog');
@@ -63,6 +78,10 @@
     emptyEl.hidden = cart.length !== 0;
     checkoutBtn.disabled = !checkoutEnabled || cart.length === 0;
     checkoutBtn.setAttribute('aria-disabled', String(!checkoutEnabled || cart.length === 0));
+    if (paypalBtn) {
+      paypalBtn.disabled = !paypalEnabled || cart.length === 0;
+      paypalBtn.setAttribute('aria-disabled', String(!paypalEnabled || cart.length === 0));
+    }
 
     var total = 0;
     cart.forEach(function (id) {
@@ -120,6 +139,11 @@
     btn.addEventListener('click', function () {
       var id = this.dataset.book;
       if (!catalog[id]) return;
+      if (id === 'original-eight-bundle') {
+        cart = cart.filter(function (bookId) { return originalEightIds.indexOf(bookId) === -1; });
+      } else if (originalEightIds.indexOf(id) !== -1) {
+        cart = cart.filter(function (bookId) { return bookId !== 'original-eight-bundle'; });
+      }
       if (cart.indexOf(id) === -1) cart.push(id);
       render();
       openCart();
@@ -141,22 +165,22 @@
   if (overlay) overlay.addEventListener('click', closeCart);
   document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && drawer && drawer.classList.contains('is-open')) closeCart(); trapCartFocus(event); });
 
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', async function () {
-      if (!checkoutEnabled || !cart.length || this.disabled) return;
+  async function beginCheckout(button, endpoint, enabled) {
+      if (!enabled || !cart.length || button.disabled) return;
       var apiBase = (window.BESTENOUF_STORE && window.BESTENOUF_STORE.apiBase || '').replace(/\/$/, '');
       if (!apiBase) {
         setStatus('Checkout API is not configured.', true);
         return;
       }
 
-      var original = this.textContent;
-      this.disabled = true;
-      this.textContent = 'Opening secure checkout…';
+      var original = button.textContent;
+      checkoutBtn.disabled = true;
+      if (paypalBtn) paypalBtn.disabled = true;
+      button.textContent = 'Opening secure checkout…';
       setStatus('', false);
 
       try {
-        var response = await fetch(apiBase + '/checkout', {
+        var response = await fetch(apiBase + endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ items: cart.map(function (id) { return { id: id, quantity: 1 }; }) })
@@ -165,12 +189,17 @@
         if (!response.ok || !data.url) throw new Error(data.error || 'Unable to start checkout');
         window.location.assign(data.url);
       } catch (error) {
-        this.disabled = false;
-        this.textContent = original;
+        checkoutBtn.disabled = !checkoutEnabled || !cart.length;
+        if (paypalBtn) paypalBtn.disabled = !paypalEnabled || !cart.length;
+        button.textContent = original;
         setStatus(error.message || 'Unable to start checkout. Please try again.', true);
       }
-    });
   }
+
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function () { beginCheckout(checkoutBtn, '/checkout', checkoutEnabled); });
+  }
+  if (paypalBtn) paypalBtn.addEventListener('click', function () { beginCheckout(paypalBtn, '/paypal/create-order', paypalEnabled); });
 
   function setStatus(message, isError) {
     if (!statusEl) return;
@@ -178,6 +207,5 @@
     statusEl.classList.toggle('is-error', !!isError);
   }
 
-  if (!checkoutEnabled && checkoutBtn) checkoutBtn.textContent = 'Checkout temporarily unavailable';
   render();
 })();

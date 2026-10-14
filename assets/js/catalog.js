@@ -73,5 +73,10 @@ window.BESTENOUF_CATALOG = Object.freeze({
     "name": "Study Abroad Playbook",
     "price": 2200,
     "image": "assets/images/books/study-abroad-playbook.webp"
+  },
+  "original-eight-bundle": {
+    "name": "The Original Eight — All-round Success Pack",
+    "price": 7900,
+    "image": "assets/images/books/hired.webp"
   }
 });

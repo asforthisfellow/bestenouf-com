@@ -23,6 +23,8 @@
 .book-cart__total{display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
 .book-cart__total strong{font-size:1.05rem;letter-spacing:0}
 .book-cart__checkout{width:100%;justify-content:center}
+.book-cart__paypal{margin-top:.6rem;min-height:44px;background:#e6efda!important;color:#1c2328!important;border-color:#b8c6a8!important}
+.book-cart__paypal:hover{background:#d8e7c6!important;border-color:#545454!important}
 .book-cart__checkout:disabled{opacity:.45;transform:none;box-shadow:none;cursor:not-allowed}
 .book-cart__status{min-height:1.2em;margin-top:.65rem;font-size:.68rem;color:var(--g2);line-height:1.45}
 .book-cart__status.is-error{color:var(--red)}
