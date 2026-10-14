@@ -215,7 +215,13 @@ img,svg{display:block;max-width:100%}
 .oe__math div{background:#252d32;padding:1rem}
 .oe__math dt{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--mint)}
 .oe__math dd{margin:.25rem 0 0;font-size:clamp(1.35rem,2.4vw,2rem);font-weight:900}
-.oe__actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.oe__actions{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1fr);align-items:stretch;gap:1rem;width:100%;max-width:620px}
+.oe__actions .btn{display:inline-flex;align-items:center;justify-content:center;min-width:0;min-height:56px;margin:0;padding:.85rem 1.25rem;border-radius:9px;line-height:1.2;text-align:center;white-space:nowrap}
+.oe__actions .oe__buy{border:1px solid var(--mint);background:transparent;color:var(--mint)}
+.oe__actions .oe__buy::before{content:'';width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:var(--mint);margin-right:.65rem}
+.oe__actions .oe__buy:hover{background:var(--mint);color:var(--dark);transform:none;box-shadow:none}
+.oe__actions .oe__explore{background:var(--red);color:#fff}
+.oe__actions .oe__explore:hover{background:#b30000}
 .oe__status{display:inline-flex;align-items:center;min-height:44px;padding:.7rem 1rem;border:1px solid var(--mint);border-radius:4px;color:var(--mint);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
 .oe__status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--mint);margin-right:.65rem}
 .oe__covers{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.45rem,1vw,.8rem);padding:clamp(1rem,3vw,2.5rem);isolation:isolate}
@@ -307,6 +313,7 @@ img,svg{display:block;max-width:100%}
 .hero__qt-space{min-height:300px}
 .hero__dot-letter{font-size:.8em;margin-left:.12em;top:-.5em}
 .oe__covers{grid-template-columns:repeat(2,minmax(0,1fr));padding:.5rem}.oe__cover:nth-child(n){--y:0}.oe__title{font-size:2.6rem}
+.oe__actions{gap:.35rem}.oe__actions .btn{font-size:.48rem;letter-spacing:.05em;padding:.7rem .35rem;white-space:nowrap}
 }
 @media(max-width:280px){
 .hero__name{font-size:2.2rem}.hero__dot-letter{font-size:.7em;top:-.45em}
@@ -546,8 +553,8 @@ html:not(.motion-ready) .hero__name,html:not(.motion-ready) .hero__name .ch,html
 <div><dt>You save</dt><dd>$77</dd></div>
 </dl>
 <div class="oe__actions">
-<button type="button" class="book-buy btn btn--r" data-book="original-eight-bundle" aria-pressed="false">Add the Pack to Cart</button>
-<a href="books.html" class="btn btn--r mag" data-h>Explore all books</a>
+<button type="button" class="book-buy btn oe__buy" data-book="original-eight-bundle" aria-pressed="false">Add to Cart</button>
+<a href="books.html" class="btn oe__explore mag" data-h>Explore all books</a>
 </div>
 </div>
 <div class="oe__covers" role="group" aria-label="The eight ebook covers in the Original Eight bundle">
