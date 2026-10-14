@@ -74,6 +74,11 @@ window.BESTENOUF_CATALOG = Object.freeze({
     "price": 2200,
     "image": "assets/images/books/study-abroad-playbook.webp"
   },
+  "childrens-farm-coloring-book": {
+    "name": "Children’s Farm Coloring Book",
+    "price": 1500,
+    "image": "assets/images/books/childrens-farm-coloring-book-v2.svg"
+  },
   "original-eight-bundle": {
     "name": "The Original Eight — All-round Success Pack",
     "price": 7900,
