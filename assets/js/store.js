@@ -2,8 +2,9 @@
   'use strict';
 
   var catalog = window.BESTENOUF_CATALOG || {};
-  var checkoutEnabled = !!(window.BESTENOUF_STORE && window.BESTENOUF_STORE.checkoutEnabled);
-  var paypalEnabled = !!(window.BESTENOUF_STORE && window.BESTENOUF_STORE.paypalEnabled);
+  var secureStorefront = window.location.protocol === 'https:' && /^(www\.)?bestenouf\.com$/i.test(window.location.hostname);
+  var checkoutEnabled = secureStorefront && !!(window.BESTENOUF_STORE && window.BESTENOUF_STORE.checkoutEnabled);
+  var paypalEnabled = secureStorefront && !!(window.BESTENOUF_STORE && window.BESTENOUF_STORE.paypalEnabled);
   var assetRoot = document.body.dataset.assetRoot || '';
 
   var storageKey = 'bestenoufBookCartV1';
@@ -23,7 +24,7 @@
   var originalEightIds = ['hired', 'tax-clarity', 'the-debt-free-paycheck', 'first-1000-online', 'calm-under-pressure', 'focus-that-finishes', 'the-steady-body', 'the-discipline-code'];
 
   if (checkoutBtn) {
-    checkoutBtn.textContent = checkoutEnabled ? 'Pay securely by card' : 'Checkout temporarily unavailable';
+    checkoutBtn.textContent = checkoutEnabled ? 'Pay securely by card' : 'Secure checkout activates with HTTPS';
     if (paypalEnabled) {
       paypalBtn = document.createElement('button');
       paypalBtn.type = 'button';
