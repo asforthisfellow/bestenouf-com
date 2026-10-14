@@ -1,6 +1,6 @@
 # Bestenouf — merged GitHub Pages website
 
-This package combines the attached website with a 15-book catalog and the latest author biography.
+This package combines the attached website with a 16-book catalog and the latest author biography.
 
 ## Open locally
 
@@ -17,7 +17,7 @@ Extract the ZIP first, then open `index.html`. The navigation uses real page lin
 
 ## Payments before launch
 
-The catalog contains 15 priced books. The Railway API address is configured, but checkout remains intentionally disabled until the backend passes the production-readiness checks below.
+The site presents 16 priced books. Fifteen downloadable titles are connected to checkout; Children’s Farm Coloring Book remains disabled until its delivery file is connected to the Railway catalog.
 
 - Treat `checkout-catalog.json` as display data only. The backend must keep its own trusted product allowlist and calculate every price server-side from catalog IDs.
 - Restrict CORS to `https://bestenouf.com` and the exact `www` origin if it remains in use. Never reflect arbitrary origins.
@@ -30,4 +30,4 @@ No Stripe or PayPal secret belongs in this public repository. GitHub Pages also 
 
 ## Validation
 
-All local page, image, script, stylesheet, and fragment links were checked. Catalog order, 15 approved prices, 15 cover poses, the Original Eight bundle calculation, biography wording, skip links, heading structure, and sitemap coverage were checked. Cart behavior was checked with a local JavaScript harness. The repository workflow runs `node scripts/verify-site.mjs` on every push and pull request. Browser/device rendering and live checkout still require verification.
+All local page, image, script, stylesheet, and fragment links were checked. Catalog order, 16 displayed prices, 16 cover poses, the Original Eight bundle calculation, biography wording, skip links, heading structure, and sitemap coverage were checked. Cart behavior was checked with a local JavaScript harness. The repository workflow runs `node scripts/verify-site.mjs` on every push and pull request. Browser/device rendering and live checkout still require verification.
