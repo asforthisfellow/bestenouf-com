@@ -1,6 +1,6 @@
 {
   "currency": "USD",
-  "revision": "2026-10-07",
+  "revision": "2026-10-14",
   "items": [
     {
       "id": "men-of-the-bible",
@@ -76,6 +76,11 @@
       "id": "study-abroad-playbook",
       "name": "Study Abroad Playbook",
       "priceCents": 2200
+    },
+    {
+      "id": "childrens-farm-coloring-book",
+      "name": "Children’s Farm Coloring Book",
+      "priceCents": 1500
     }
   ]
 }
